@@ -11,10 +11,12 @@
 const GitRepo = require('git-repository');
 const task = require('./task');
 
+require('babel-polyfill');
+
 const remote = {
   name: 'github',
-  url: 'https://github.com/{user}/{repo}.git',
-  branch: 'gh-pages',
+  url: 'https://github.com/reecefenwick/reecefenwick.github.io.git',
+  branch: 'gh-pages'
 };
 
 /**
