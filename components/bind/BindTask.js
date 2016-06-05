@@ -1,21 +1,31 @@
 import React from 'react';
-import Layout from '../layout/Layout.js';
+import Layout from '../layout/Layout';
 import Loader from 'react-loader';
+import Config from '../Config'
 
 class BindTask extends React.Component {
 
+  constructor() {
+    super();
+    this.state = { task: null, error: null };
+  }
+
   getBindTask() {
     const self = this;
-    fetch(`/api/bind/${this.props.id}`)
+    fetch(`http://localhost:8080/api/bind/${this.props.id}`)
       .then(function(response) {
-        console.log(response);
         if (response.status === 200) {
+            return response.json();
+        }
+        return null;
+      })
+      .then(function(json) {
+        if (json !== null) {
           clearInterval(self.poller);
-          self.setState({ complete: true, error: null, task: response.json() });
+          self.setState({ error: null, task: json });
         }
       }).catch(function(ex) {
-        console.log(ex);
-        self.setState({ complete: true, error: ex, task: null })
+        self.setState({ error: ex, task: null })
       })
   };
 
@@ -28,15 +38,18 @@ class BindTask extends React.Component {
 
   render() {
     const id = this.props.id;
-    const isComplete = this.props.isComplete;
+    const task = this.state.task || null;
+
     return (
       <Layout>
         <h1>{id}</h1>
         <div>
           {id}
         </div>
-        <Loader loaded={isComplete}>
-          DONE BRO
+        <Loader loaded={task !== null}>
+            <div>
+              <a href="{this.state.task.url}"></a>
+            </div>
         </Loader>
       </Layout>
     );
@@ -45,7 +58,9 @@ class BindTask extends React.Component {
 
 BindTask.propTypes = {
   id: React.PropTypes.string.isRequired,
-  isComplete: React.PropTypes.bool.isRequired
+  isComplete: React.PropTypes.bool.isRequired,
+  error: React.PropTypes.string,
+  downloadUrl: React.PropTypes.string
 };
 
 export default BindTask;

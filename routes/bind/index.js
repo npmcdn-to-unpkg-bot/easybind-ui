@@ -1,13 +1,10 @@
 import { BindTask } from '../../components';
 
-
 export default {
 
   path: '/bind/:id',
 
-  async action({ params }) {
-    // const resp = await fetch(`/api/posts/${params.id}`);
-    // const data = await resp.json();
+  action({ params }) {
     const data = {
       isComplete: false,
       id: params.id
