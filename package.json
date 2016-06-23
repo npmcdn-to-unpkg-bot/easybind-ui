@@ -52,6 +52,7 @@
     "postcss-nesting": "^2.3.1",
     "postcss-selector-matches": "^2.0.1",
     "postcss-selector-not": "^2.0.0",
+    "proxy-agent": "^2.0.0",
     "react": "^15.0.2",
     "react-app": "^1.0.0-alpha.3",
     "react-dom": "^15.0.2",
@@ -98,7 +99,7 @@
     "clean": "node tools/clean",
     "build": "node tools/build --release",
     "build:debug": "node tools/build",
-    "deploy": "node tools/deploy.gh --release",
+    "deploy": "node tools/deploy.s3 --release",
     "start": "node tools/start"
   }
 }
