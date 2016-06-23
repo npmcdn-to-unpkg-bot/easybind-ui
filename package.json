@@ -56,7 +56,7 @@
     "react": "^15.0.2",
     "react-app": "^1.0.0-alpha.3",
     "react-dom": "^15.0.2",
-    "react-dropzone": "^3.5.0",
+    "react-dropzone": "^3.5.1",
     "react-hot-loader": "^3.0.0-beta.2",
     "react-loader": "^2.4.0",
     "react-redux": "^4.4.5",
@@ -69,7 +69,8 @@
     "webpack": "^1.13.0",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0",
-    "whatwg-fetch": "^1.0.0"
+    "whatwg-fetch": "^1.0.0",
+    "AWSFederator": "1.0.3"
   },
   "babel": {
     "presets": [
