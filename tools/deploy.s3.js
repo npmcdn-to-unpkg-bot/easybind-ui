@@ -10,6 +10,7 @@ const password = 'password';
 const workspace = 'workspace';
 const role = 'aws-defaultuser';
 const region = 'ap-southeast-2';
+const s3bucket = 'easybind-ui-uat';
 
 AWS.config.update({
   httpOptions: {agent: proxy(`http://${username}:${password}@isaproxy.int.corp.sun:89`)} // TODO RF - Make proxy host configurable
@@ -37,7 +38,7 @@ module.exports = task('deploy', () => Promise.resolve()
     const uploader = client.uploadDir({
       localDir: 'build',
       deleteRemoved: true,
-      s3Params: {Bucket: 'easybind-ui-uat', ACL: 'public-read'}
+      s3Params: {Bucket: s3bucket, ACL: 'public-read'}
     });
     uploader.on('error', reject);
     uploader.on('end', resolve);
