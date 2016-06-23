@@ -26,6 +26,12 @@ const config = {
     sourcePrefix: '  ',
   },
 
+  externals: {
+    Config: JSON.stringify({
+      API_URL: 'https://localhost:8443'
+    })
+  },
+
   // Switch loaders to debug or release mode
   debug: isDebug,
 

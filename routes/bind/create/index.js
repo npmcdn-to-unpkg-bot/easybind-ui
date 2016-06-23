@@ -1,4 +1,4 @@
-import { BindTask } from '../../components';
+import { RetrieveBindTask } from '../../../components';
 
 export default {
 
@@ -10,7 +10,7 @@ export default {
       id: params.id
     };
     return {
-      component: BindTask,
+      component: RetrieveBindTask,
       props: data
     };
   }

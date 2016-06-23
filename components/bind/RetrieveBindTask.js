@@ -1,39 +1,41 @@
 import React from 'react';
 import Layout from '../layout/Layout';
 import Loader from 'react-loader';
-import Config from '../Config'
+// Config is injected by webpack
+import Config from 'Config'; // eslint-disable-line import/no-unresolved
 
-class BindTask extends React.Component {
+class RetrieveBindTask extends React.Component {
 
   constructor() {
     super();
     this.state = { task: null, error: null };
   }
 
+  componentDidMount() {
+    const self = this;
+    this.poller = setInterval(() => {
+      self.getBindTask();
+    }, 5000);
+  }
+
   getBindTask() {
     const self = this;
-    fetch(`http://localhost:8080/api/bind/${this.props.id}`)
-      .then(function(response) {
+    fetch(`${Config.API_URL}/api/bind/${this.props.id}`)
+      .then((response) => {
         if (response.status === 200) {
-            return response.json();
+          return response.json();
         }
         return null;
       })
-      .then(function(json) {
+      .then((json) => {
         if (json !== null) {
           clearInterval(self.poller);
           self.setState({ error: null, task: json });
         }
-      }).catch(function(ex) {
-        self.setState({ error: ex, task: null })
       })
-  };
-
-  componentDidMount() {
-    const self = this;
-    this.poller = setInterval(function() {
-      self.getBindTask();
-    }, 5000);
+      .catch((ex) => {
+        self.setState({ error: ex, task: null });
+      });
   }
 
   render() {
@@ -47,20 +49,20 @@ class BindTask extends React.Component {
           {id}
         </div>
         <Loader loaded={task !== null}>
-            <div>
-              <a href="{this.state.task.url}"></a>
-            </div>
+          <div>
+            <a href="{this.state.task.url}"></a>
+          </div>
         </Loader>
       </Layout>
     );
   }
 }
 
-BindTask.propTypes = {
+RetrieveBindTask.propTypes = {
   id: React.PropTypes.string.isRequired,
   isComplete: React.PropTypes.bool.isRequired,
   error: React.PropTypes.string,
   downloadUrl: React.PropTypes.string
 };
 
-export default BindTask;
+export default RetrieveBindTask;
