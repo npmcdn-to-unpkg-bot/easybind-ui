@@ -7,7 +7,7 @@ export default {
   action() {
     return {
       component: Home
-    }
+    };
   }
 
 };

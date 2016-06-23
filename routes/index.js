@@ -1,6 +1,7 @@
 import home from './home';
 import error from './error';
-import bind from './bind';
+import createBindTask from './bind/create';
+import retrieveBindTask from './bind/retrieve';
 import about from './about';
 
 const routes = {
@@ -9,7 +10,8 @@ const routes = {
 
   children: [
     home,
-    bind,
+    createBindTask,
+    retrieveBindTask,
     about,
     error
   ]
