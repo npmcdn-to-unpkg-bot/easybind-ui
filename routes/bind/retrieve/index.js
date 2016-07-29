@@ -1,13 +1,17 @@
-import { CreateBindTask } from '../../../components';
+import { RetrieveBindTask } from '../../../components';
 
 export default {
 
-  path: '/bind',
+  path: '/bind/:id',
 
-  action() {
+  action({ params }) {
+    const data = {
+      isComplete: false,
+      id: params.id
+    };
     return {
-      component: CreateBindTask,
-      props: null
+      component: RetrieveBindTask,
+      props: data
     };
   }
 };

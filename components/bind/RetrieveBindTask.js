@@ -20,8 +20,9 @@ class RetrieveBindTask extends React.Component {
 
   getBindTask() {
     const self = this;
-    fetch(`${Config.API_URL}/api/bind/${this.props.id}`)
+    fetch(`${Config.API_URL}/v1/bind/${this.props.id}`)
       .then((response) => {
+        console.log(response.status);
         if (response.status === 200) {
           return response.json();
         }
@@ -41,16 +42,15 @@ class RetrieveBindTask extends React.Component {
   render() {
     const id = this.props.id;
     const task = this.state.task || null;
+    const downloadUrl = (task === null) ? "" : task.url;
 
     return (
       <Layout>
-        <h1>{id}</h1>
-        <div>
-          {id}
-        </div>
+        <h4>Waiting for your results...</h4>
+        <br />
         <Loader loaded={task !== null}>
           <div>
-            <a href="{this.state.task.url}"></a>
+            <a href={downloadUrl}>Click here to download your file</a>
           </div>
         </Loader>
       </Layout>

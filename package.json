@@ -5,6 +5,7 @@
     "npm": ">=3.8"
   },
   "dependencies": {
+    "AWSFederator": "1.0.3",
     "autoprefixer": "^6.3.6",
     "babel-cli": "^6.9.0",
     "babel-core": "^6.9.0",
@@ -60,17 +61,19 @@
     "react-hot-loader": "^3.0.0-beta.2",
     "react-loader": "^2.4.0",
     "react-redux": "^4.4.5",
+    "react-select": "^1.0.0-beta14",
     "redux": "^3.5.2",
     "s3": "^4.4.0",
     "style-loader": "^0.13.1",
     "stylelint": "^6.4.1",
     "stylelint-config-standard": "^7.0.0",
+    "superagent": "^2.1.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.0",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0",
     "whatwg-fetch": "^1.0.0",
-    "AWSFederator": "1.0.3"
+    "yargs": "^4.7.1"
   },
   "babel": {
     "presets": [
@@ -106,5 +109,6 @@
     "build:debug": "node tools/build",
     "deploy": "node tools/deploy.s3 --release",
     "start": "node tools/start"
-  }
+  },
+  "devDependencies": {}
 }

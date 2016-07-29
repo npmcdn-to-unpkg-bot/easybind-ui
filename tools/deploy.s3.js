@@ -11,6 +11,10 @@ const workspace = 'workspace';
 const role = 'aws-defaultuser';
 const region = 'ap-southeast-2';
 const s3bucket = 'easybind-ui-uat';
+const argv = require('yargs').argv;
+
+const environment = argv;
+console.log(argv);
 
 AWS.config.update({
   httpOptions: {agent: proxy(`http://${username}:${password}@isaproxy.int.corp.sun:89`)} // TODO RF - Make proxy host configurable

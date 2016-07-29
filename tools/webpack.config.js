@@ -2,8 +2,9 @@ const path = require('path');
 const webpack = require('webpack');
 const extend = require('extend');
 const pkg = require('../package.json');
+const argv = require('yargs').argv;
 
-const isDebug = !(process.argv.includes('--release') || process.argv.includes('-r'));
+const isDebug = argv.env !== !(process.argv.includes('--release') || process.argv.includes('-r'));
 const isVerbose = process.argv.includes('--verbose') || process.argv.includes('-v');
 
 /**
@@ -28,7 +29,7 @@ const config = {
 
   externals: {
     Config: JSON.stringify({
-      API_URL: 'https://localhost:8443'
+      API_URL: 'https://api-nonprod.int.corp.sun/easybind-uat'
     })
   },
 
